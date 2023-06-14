@@ -54,18 +54,24 @@ MORSE_CODE = {
     '.-..-.' => '"',
     '...-..-' => '$',
     '.--.-.' => '@',
-    '...---...' => 'SOS'
+    '...---...' => 'SOS',
+    ' ' => ' '  
   }
 
-  def decorde_char(char)
+  def decode_char(char)
     char.strip! 
     MORSE_CODE[char] || ' '
   end
   # Method of decoding word 
-  def decode_word(char)
-    char.split(' ').map { |c| decorde_char(c) }.join('')
+  def decode_word(word)
+    word.strip!
+    word.split('').map { |c|  MORSE_CODE[c] || ' ' }.join('')
+   
   end
   # Method of decoding sentence
-  def decode_message(char)
-    char.split('   ').map { |c| decode_word(c) }.join(' ')
+  def decode_message(message)
+    message.strip!
+    message.split('').map { |word| MORSE_CODE(word) }.join(' ')
   end
+  
+    puts decode_word('-- -.--   -. .- -- .')
