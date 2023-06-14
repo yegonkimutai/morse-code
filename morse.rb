@@ -65,3 +65,7 @@ MORSE_CODE = {
   def decode_word(char)
     char.split(' ').map { |c| decorde_char(c) }.join('')
   end
+  # Method of decoding sentence
+  def decode_message(char)
+    char.split('   ').map { |c| decode_word(c) }.join(' ')
+  end
